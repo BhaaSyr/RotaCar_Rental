@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Car>
+
+<div class=" navbar-collapse justify-content-between">
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="RentalCrud" asp-action="Index">rentals</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="LocationsCrud" asp-action="Index">Locations</a>
+        </li>
+    </ul>
+</div>
+
+@if (TempData["CarDeleted"] != null)
+{
+    <p class="text-success">@TempData["CarDeleted"]</p>
+}
+@if (!Model.Any())
+{
+    <p>No results</p>
+}
+else
+{
+    <table class="table table-condensed table-bordered">
+        <tr>
+            <th>
+                Model
+            </th>
+            <th>
+                RentalRateDaily
+            </th>
+            <th>
+                RentalRateWeekly
+            </th>
+            <th>
+                LicensePlate
+            </th>  
+
+            <th>
+                Fual
+            </th>
+            <th>
+                Make
+            </th>
+            <th>
+                Mileage
+            </th>
+            <th>
+                Seats
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Transmission
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Year
+            </th>
+
+        </tr>
+
+        @foreach (var car in Model)
+        {
+            <tr>
+                <td>@car.Model</td>
+                <td>@car.RentalRateDaily</td>
+                <td>@car.RentalRateWeekly</td>
+                <td>@car.LicensePlate</td>
+                <td>@car.Fuel</td>
+                <td>@car.Make</td>
+                <td>@car.Mileage</td>
+                <td>@car.Seats</td>
+                <td>@car.Status</td>
+                <td>@car.Transmission</td>
+                <td>@car.Type</td>
+                <td>@car.Year</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@car.Id.ToString()">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@car.Id.ToString()">Delete</a>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+<p>
+    <a class="btn btn-primary" asp-action="Add">Add new car</a>
+</p>

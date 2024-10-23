@@ -1,0 +1,78 @@
+﻿@model Car
+
+
+<div class="container">
+<h2>Update </h2>
+<hr />
+
+<form method="post" asp-controller="CarCrud" asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Model" class="form-label">Model</label>
+        <input asp-for="Model" class="form-control" />
+        <span asp-validation-for="Model" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="RentalRateDaily" class="form-label">RentalRate Daily</label>
+        <input asp-for="RentalRateDaily" class="form-control" />
+        <span asp-validation-for="RentalRateDaily" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="RentalRateWeekly" class="form-label">RentalRate Weekly</label>
+        <input asp-for="RentalRateWeekly" class="form-control" />
+        <span asp-validation-for="RentalRateWeekly" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Fuel" class="form-label">Fuel</label>
+        <input asp-for="Fuel" class="form-control" />
+        <span asp-validation-for="Fuel" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Make" class="form-label">Make</label>
+        <input asp-for="Make" class="form-control" />
+        <span asp-validation-for="Make" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Mileage" class="form-label">Mileage</label>
+        <input asp-for="Mileage" class="form-control" />
+        <span asp-validation-for="Mileage" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Seats" class="form-label">Seats</label>
+        <input asp-for="Seats" class="form-control" />
+        <span asp-validation-for="Seats" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Status" class="form-label">Status</label>
+        <input asp-for="Status" class="form-control" />
+        <span asp-validation-for="Status" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Transmission" class="form-label">Transmission</label>
+        <input asp-for="Transmission" class="form-control" />
+        <span asp-validation-for="Transmission" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="LicensePlate" class="form-label">LicensePlate</label>
+        <input asp-for="LicensePlate" class="form-control" />
+        <span asp-validation-for="LicensePlate" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Type" class="form-label">Type</label>
+        <input asp-for="Type" class="form-control" />
+        <span asp-validation-for="Type" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Year" class="form-label">Year</label>
+        <input asp-for="Year" class="form-control" />
+        <span asp-validation-for="Year" class="text-danger" />
+    </div>
+  
+    <input type="submit" value="Update" class="btn btn-primary" />
+</form>
+<div>
+    <a asp-controller="CarCrud" asp-action="Index">Back to list</a>
+    </div>
+</div>
