@@ -268,7 +268,7 @@ namespace RotaCar_Rental.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fast &amp;amp; Easy Way To Rent A Car.
+        ///   Looks up a localized string similar to Fast &amp; Easy Way To Rent A Car.
         /// </summary>
         public static string Fast_Easy_Way_To_Rent_A_Car {
             get {

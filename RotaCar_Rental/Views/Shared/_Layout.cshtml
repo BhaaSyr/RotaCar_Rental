@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RotaCar_Rental.styles.css" asp-append-version="true" />
+    <link rel="shortcut icon" href="~/assets/images/favicon.png" />
 </head>
 <body>
     <header>
@@ -32,7 +33,7 @@
         
         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
             <div class="container">
-                <a class="navbar-brand"> <img src="~/icones/Logo1.png" width="40%" alt=""> </a>
+                <a class="navbar-brand"> <img src="~/icones/Logo1.png" style="width:90px" alt=""> </a>
                @*  <a class="navbar-brand" href="index.html">Car<span>Book</span></a> *@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="oi oi-menu"></span> Menu
@@ -46,11 +47,11 @@
                         <li class="nav-item"><a asp-area="Customer" asp-controller="Home" asp-action="services" class="nav-link">@RotaCar_Rental.Resources.Resource.Services</a></li>
                         <li class="nav-item"><a asp-area="Customer" asp-controller="Car" asp-action="Pricing" class="nav-link">@RotaCar_Rental.Resources.Resource.Pricing</a></li>
                         <li class="nav-item"><a asp-area="Customer" asp-controller="Car" asp-action="car" class="nav-link">@RotaCar_Rental.Resources.Resource.Cars</a></li>
-                        <li class="nav-item"><a asp-area="Customer" asp-controller="Blog" asp-action="blog" class="nav-link">@RotaCar_Rental.Resources.Resource.Blog</a></li>
+                        @* <li class="nav-item"><a asp-area="Customer" asp-controller="Blog" asp-action="blog" class="nav-link">@RotaCar_Rental.Resources.Resource.Blog</a></li> *@
                         <li class="nav-item"><a asp-area="Customer" asp-controller="Home" asp-action="Contact" class="nav-link">@RotaCar_Rental.Resources.Resource.Contact</a></li>
                         @if (User.IsInRole(SD.Role_User_Admin))
                         { 
-                            <li class="nav-item"><a asp-area="Admin" asp-controller="CarCrud" asp-action="Index" class="nav-link">Admin</a></li>
+                            <li class="nav-item"><a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="nav-link">Admin</a></li>
                             
                         }
                        

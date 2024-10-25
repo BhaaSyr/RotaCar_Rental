@@ -117,15 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>About</value>
-  </data>
-  <data name="All rights reserved" xml:space="preserve">
-    <value>All rights reserved</value>
-  </data>
-  <data name="Best Price Guarantee" xml:space="preserve">
-    <value>Best Price Guarantee</value>
-  </data>
   <data name="Better Way to Rent Your Perfect Cars" xml:space="preserve">
     <value>Better Way to Rent Your Perfect Cars</value>
   </data>
@@ -187,7 +178,7 @@
     <value>Find the perfect car for your trip with ease! Explore our wide range of vehicles, flexible booking options, and competitive prices. Your journey starts here!</value>
   </data>
   <data name="Fast Easy Way To Rent A Car" xml:space="preserve">
-    <value>Fast &amp;amp; Easy Way To Rent A Car</value>
+    <value>Fast &amp; Easy Way To Rent A Car</value>
   </data>
   <data name="Feeatured Vehicles" xml:space="preserve">
     <value>Feeatured Vehicles</value>
@@ -251,5 +242,14 @@
   </data>
   <data name="Year" xml:space="preserve">
     <value>Year</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="All rights reserved" xml:space="preserve">
+    <value>All rights reserved</value>
+  </data>
+  <data name="Best Price Guarantee" xml:space="preserve">
+    <value>Best Price Guarantee</value>
   </data>
 </root>
