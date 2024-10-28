@@ -1,8 +1,8 @@
 ﻿using Cars_rental.Repository;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using RotaCar_Rental.Models;
 using RotaCar_Rental.Models.ViewModels;
 using RotaCar_Rental.Repository.IRepository;
 using RotaCar_Rental.Utility;
@@ -11,64 +11,42 @@ namespace RotaCar_Rental.Areas.Admin.Controllers
 {
     [Area("Admin")]
 	[Authorize(Roles =SD.Role_User_Admin)]
-    public class CarCrudController : Controller
+    public class FeatureController : Controller
     {
         private IUnitOfWork _unit;
-        public CarCrudController(IUnitOfWork unit)
+        public FeatureController(IUnitOfWork unit)
         {
             this._unit = unit;
         }
         public IActionResult Index()
         {
-            IEnumerable<Car> carsList = _unit.car.GetAll();
-            return View(carsList);
+            IEnumerable<Feature> featuresList = _unit.feature.GetAll();
+            return View(featuresList);
         }
 
 		public IActionResult Edit(int? id)
 		{
 
-			CarEditVM carEditVM = new CarEditVM()
-			{
-				Location = _unit.location.GetAll().Select(u => new SelectListItem
-				{
-					Text = u.Street+u.City+u.Zip,
-					Value = u.Id.ToString()
-				}),
-				maintenanceHistory = _unit.maintenanceHistory.GetAll().Select(u => new SelectListItem
-				{
-					Text = u.Date.ToString()+","+u.Details,
-					Value = u.Id.ToString()
-				}),
-				Features = _unit.feature.GetAll().Select(u => new SelectListItem
-				{
-					Text = u.Name ,
-					Value = u.Id.ToString()
-				}),
-				Car = new Car()
-
-
-			};
+			Feature feature = new Feature();
 
 			if (id == null || id == 0)
 
 			{//create
-				return View(carEditVM);
+				return View(feature);
 			}
 			else
 			{//update
-				carEditVM.Car = _unit.car.Get(u=>u.Id ==id);
-				carEditVM.Car.location = _unit.location.Get(u => u.Id == carEditVM.Car.LocationID);
-				carEditVM.Car.Features = _unit.feature.GetAll(u => u.CarID == id).ToList();
-				carEditVM.Car.MaintenanceHistory = _unit.maintenanceHistory.GetAll(u => u.CarID == carEditVM.Car.Id).ToList();
+				feature = _unit.feature.Get(u => u.Id == id);
 
 
-				return View(carEditVM);
+
+				return View(feature);
 
 			}
 
 		}
 		[HttpPost]
-		public IActionResult Edit(CarEditVM obj, List<IFormFile>? files)
+		public IActionResult Edit(Feature obj, List<IFormFile>? files)
 		{
 
 			//obj.attribute.Images = _unitOfWork.Image.GetAll(u => u.attributId == obj.attribute.Id).ToList();
@@ -76,14 +54,14 @@ namespace RotaCar_Rental.Areas.Admin.Controllers
 			//obj.Product.attributes.Add(obj.attribute);
 			if (ModelState.IsValid)
 			{
-				if (obj.Car.Id == 0)
+				if (obj.Id == 0)
 				{
 
-					_unit.car.Add(obj.Car);
+					_unit.feature.Add(obj);
 				}
 				else
 				{
-					_unit.car.Update(obj.Car);
+					_unit.feature.Update(obj);
 
 				}
 				_unit.Save();
@@ -111,10 +89,10 @@ namespace RotaCar_Rental.Areas.Admin.Controllers
 
 				//}
 
-				
+
 				_unit.Save();
 			}
-			TempData["success"] = "Car created/updated successfully";
+			TempData["success"] = "Feature created/updated successfully";
 			return RedirectToAction("Index");
 
 
@@ -124,15 +102,15 @@ namespace RotaCar_Rental.Areas.Admin.Controllers
 		[HttpGet]
 		public ActionResult GetAll()
 		{
-			List<Car> objCarList = _unit.car.GetAll().ToList();
-			return Json(new { data = objCarList });
+			List<Feature> objFeatureList = _unit.feature.GetAll().ToList();
+			return Json(new { data = objFeatureList });
 
 		}
 		[HttpDelete]
 		public IActionResult Delete(int? id)
 		{
-			var CarToBeDeleted = _unit.car.Get(u => u.Id == id);
-			if (CarToBeDeleted == null)
+			var FeatureToBeDeleted = _unit.feature.Get(u => u.Id == id);
+			if (FeatureToBeDeleted == null)
 			{
 				return Json(new { success = false, message = "Error while deleting" });
 			}
@@ -152,7 +130,7 @@ namespace RotaCar_Rental.Areas.Admin.Controllers
 			//}
 
 
-			_unit.car.Remove(CarToBeDeleted);
+			_unit.feature.Remove(FeatureToBeDeleted);
 			_unit.Save();
 
 			return Json(new { success = true, message = "Delete Successful" });
@@ -161,4 +139,6 @@ namespace RotaCar_Rental.Areas.Admin.Controllers
 		#endregion
 
 	}
+
 }
+

@@ -32,5 +32,54 @@ namespace RotaCar_Rental.Areas.Admin.Controllers {
 			tables.Locations = _unit.location.GetAll();
 			return View(tables);
 		}
+
+
+		[HttpPost]
+		public IActionResult Edit(Car Updatecar)
+		{
+
+			_unit.car.Update(Updatecar);
+			return View(Updatecar);
+
+		}
+		#region API Calls
+		[HttpGet]
+		public ActionResult GetAll()
+		{
+			List<Car> objCarList = _unit.car.GetAll().ToList();
+			return Json(new { data = objCarList });
+
+		}
+		[HttpDelete]
+		public IActionResult Delete(int? id)
+		{
+			var CarToBeDeleted = _unit.car.Get(u => u.Id == id);
+			if (CarToBeDeleted == null)
+			{
+				return Json(new { success = false, message = "Error while deleting" });
+			}
+
+			//string productPath = @"images\products\product-" + id;
+			//string finalPath = Path.Combine(_webHostEnvironment.WebRootPath, productPath);
+
+			//if (Directory.Exists(finalPath))
+			//{
+			//    string[] filePaths = Directory.GetFiles(finalPath);
+			//    foreach (string filePath in filePaths)
+			//    {
+			//        System.IO.File.Delete(filePath);
+			//    }
+
+			//    Directory.Delete(finalPath);
+			//}
+
+
+			_unit.car.Remove(CarToBeDeleted);
+			_unit.Save();
+
+			return Json(new { success = true, message = "Delete Successful" });
+		}
+
+		#endregion
 	}
 }

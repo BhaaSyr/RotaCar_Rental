@@ -23,6 +23,8 @@ public class Location
 
 
     public string Zip { get; set; }
+	public double Long {  get; set; }
+	public double Lat { get; set; }
     public int AvailableCar { get; set; }
     [DataType(DataType.PhoneNumber)]
     [Required]

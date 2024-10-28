@@ -1,6 +1,5 @@
 ﻿using Cars_rental.Repository;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RotaCar_Rental.Models.ViewModels;
@@ -11,64 +10,63 @@ namespace RotaCar_Rental.Areas.Admin.Controllers
 {
     [Area("Admin")]
 	[Authorize(Roles =SD.Role_User_Admin)]
-    public class CarCrudController : Controller
+    public class LocationController : Controller
     {
         private IUnitOfWork _unit;
-        public CarCrudController(IUnitOfWork unit)
+        public LocationController(IUnitOfWork unit)
         {
             this._unit = unit;
         }
         public IActionResult Index()
         {
-            IEnumerable<Car> carsList = _unit.car.GetAll();
-            return View(carsList);
+            IEnumerable<Location> locationsList = _unit.location.GetAll();
+            return View(locationsList);
         }
 
 		public IActionResult Edit(int? id)
 		{
 
-			CarEditVM carEditVM = new CarEditVM()
-			{
-				Location = _unit.location.GetAll().Select(u => new SelectListItem
-				{
-					Text = u.Street+u.City+u.Zip,
-					Value = u.Id.ToString()
-				}),
-				maintenanceHistory = _unit.maintenanceHistory.GetAll().Select(u => new SelectListItem
-				{
-					Text = u.Date.ToString()+","+u.Details,
-					Value = u.Id.ToString()
-				}),
-				Features = _unit.feature.GetAll().Select(u => new SelectListItem
-				{
-					Text = u.Name ,
-					Value = u.Id.ToString()
-				}),
-				Car = new Car()
+			Location location = new Location();
+			//CarEditVM carEditVM = new CarEditVM()
+			//{
+			//	Location = _unit.location.GetAll().Select(u => new SelectListItem
+			//	{
+			//		Text = u.Street + u.City + u.Zip,
+			//		Value = u.Id.ToString()
+			//	}),
+			//	maintenanceHistory = _unit.maintenanceHistory.GetAll().Select(u => new SelectListItem
+			//	{
+			//		Text = u.Date.ToString() + "," + u.Details,
+			//		Value = u.Id.ToString()
+			//	}),
+			//	Features = _unit.feature.GetAll().Select(u => new SelectListItem
+			//	{
+			//		Text = u.Name,
+			//		Value = u.Id.ToString()
+			//	}),
+			//	Car = new Car()
 
 
-			};
+			//};
 
 			if (id == null || id == 0)
 
 			{//create
-				return View(carEditVM);
+				return View(location);
 			}
 			else
 			{//update
-				carEditVM.Car = _unit.car.Get(u=>u.Id ==id);
-				carEditVM.Car.location = _unit.location.Get(u => u.Id == carEditVM.Car.LocationID);
-				carEditVM.Car.Features = _unit.feature.GetAll(u => u.CarID == id).ToList();
-				carEditVM.Car.MaintenanceHistory = _unit.maintenanceHistory.GetAll(u => u.CarID == carEditVM.Car.Id).ToList();
+				location = _unit.location.Get(u => u.Id == id);
 
 
-				return View(carEditVM);
+
+				return View(location);
 
 			}
 
 		}
 		[HttpPost]
-		public IActionResult Edit(CarEditVM obj, List<IFormFile>? files)
+		public IActionResult Edit(Location obj, List<IFormFile>? files)
 		{
 
 			//obj.attribute.Images = _unitOfWork.Image.GetAll(u => u.attributId == obj.attribute.Id).ToList();
@@ -76,14 +74,14 @@ namespace RotaCar_Rental.Areas.Admin.Controllers
 			//obj.Product.attributes.Add(obj.attribute);
 			if (ModelState.IsValid)
 			{
-				if (obj.Car.Id == 0)
+				if (obj.Id == 0)
 				{
 
-					_unit.car.Add(obj.Car);
+					_unit.location.Add(obj);
 				}
 				else
 				{
-					_unit.car.Update(obj.Car);
+					_unit.location.Update(obj);
 
 				}
 				_unit.Save();
@@ -111,10 +109,10 @@ namespace RotaCar_Rental.Areas.Admin.Controllers
 
 				//}
 
-				
+
 				_unit.Save();
 			}
-			TempData["success"] = "Car created/updated successfully";
+			TempData["success"] = "Location created/updated successfully";
 			return RedirectToAction("Index");
 
 
@@ -124,15 +122,15 @@ namespace RotaCar_Rental.Areas.Admin.Controllers
 		[HttpGet]
 		public ActionResult GetAll()
 		{
-			List<Car> objCarList = _unit.car.GetAll().ToList();
-			return Json(new { data = objCarList });
+			List<Location> objLocationList = _unit.location.GetAll().ToList();
+			return Json(new { data = objLocationList });
 
 		}
 		[HttpDelete]
 		public IActionResult Delete(int? id)
 		{
-			var CarToBeDeleted = _unit.car.Get(u => u.Id == id);
-			if (CarToBeDeleted == null)
+			var LocationToBeDeleted = _unit.location.Get(u => u.Id == id);
+			if (LocationToBeDeleted == null)
 			{
 				return Json(new { success = false, message = "Error while deleting" });
 			}
@@ -152,13 +150,14 @@ namespace RotaCar_Rental.Areas.Admin.Controllers
 			//}
 
 
-			_unit.car.Remove(CarToBeDeleted);
+			_unit.location.Remove(LocationToBeDeleted);
 			_unit.Save();
 
 			return Json(new { success = true, message = "Delete Successful" });
 		}
 
 		#endregion
+
 
 	}
 }

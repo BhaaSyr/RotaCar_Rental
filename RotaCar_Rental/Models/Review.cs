@@ -16,8 +16,8 @@ public class Review
     [ForeignKey("CarID")]
     public Car car { get; set; }
 
-
-    public DateTime ReviewDate { get; set; }
+	[Column(TypeName = "Date")]
+	public DateTime ReviewDate { get; set; }
 
         public string? Comment { get; set; }
 

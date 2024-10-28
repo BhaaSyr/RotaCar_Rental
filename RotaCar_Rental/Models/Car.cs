@@ -55,6 +55,7 @@ public class Car
 
 
     public List<MaintenanceHistory>? MaintenanceHistory { get; set; } = new List<MaintenanceHistory>();
+	public List<Review>? Reviews { get; set; } = new List<Review>();
 }
 
 

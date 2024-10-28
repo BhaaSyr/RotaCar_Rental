@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="~/css/open-iconic-bootstrap.min.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/animate.css" asp-append-version="true">
-    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="~/css/owl.carousel.min.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/owl.theme.default.min.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/magnific-popup.css" asp-append-version="true">
@@ -60,14 +60,18 @@
     		<div class="row no-gutters">
     			<div class="col-md-12	featured-top">
     				<div class="row no-gutters">
-	  					<div class="col-md-4 d-flex align-items-center">
-	  						<form action="#" class="request-form ftco-animate bg-primary">
+                        <div class="col-md-4 d-flex align-items-center" class="request-form ftco-animate bg-primary">
+	  						@* <form action="#" class="request-form ftco-animate bg-primary"> *@
                                 <h2>@RotaCar_Rental.Resources.Resource.Make_your_trip</h2>
                                 
                                 <div class="form-group mb-3">
-                                    <label for="" class="label">@RotaCar_Rental.Resources.Resource.Pick_up_location</label>
-			    					<input type="text" class="form-control" placeholder="City, Airport, Station, etc">
-			    				</div>
+                                  
+                                 <form >
+                                        <label class="label">@RotaCar_Rental.Resources.Resource.Pick_up_location</label>
+                                    <input type="text" class="form-control" id="searchInput" placeholder="City, Airport, Station, etc">
+                                    <div id="searchResults"></div>
+                                 </form>
+                                 </div>
 			    				<div class="form-group">
                                     <label for="" class="label">@RotaCar_Rental.Resources.Resource.Drop_off_location</label>
 			    					<input type="text" class="form-control" placeholder="City, Airport, Station, etc">
@@ -89,7 +93,7 @@
 			            <div class="form-group">
 			              <input type="submit" value="Rent A Car Now" class="btn btn-secondary py-3 px-4">
 			            </div>
-			    			</form>
+			    			@* </form> *@
 	  					</div>
 	  					<div class="col-md-8 d-flex align-items-center">
 	  						<div class="services-wrap rounded-right w-100">
@@ -165,48 +169,7 @@
 
 
 
-                        @*			<div class="item">
-    						<div class="car-wrap rounded ftco-animate">
-                                <div class="img rounded d-flex align-items-end" style="background-image: url('/images/car-2.jpg');">
-		    					</div>
-		    					<div class="text">
-		    						<h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-		    						<div class="d-flex mb-3">
-			    						<span class="cat">Cheverolet</span>
-			    						<p class="price ml-auto">$500 <span>/day</span></p>
-		    						</div>
-		    						<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="#" class="btn btn-secondary py-2 ml-1">Details</a></p>
-		    					</div>
-		    				</div>
-    					</div>
-    					 <div class="item">
-    						<div class="car-wrap rounded ftco-animate">
-                                <div class="img rounded d-flex align-items-end" style="background-image: url(/images/car-3.jpg);">
-		    					</div>
-		    					<div class="text">
-		    						<h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-		    						<div class="d-flex mb-3">
-			    						<span class="cat">Cheverolet</span>
-			    						<p class="price ml-auto">$500 <span>/day</span></p>
-		    						</div>
-		    						<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="#" class="btn btn-secondary py-2 ml-1">Details</a></p>
-		    					</div>
-		    				</div>
-    					</div>
-    					<div class="item">
-    						<div class="car-wrap rounded ftco-animate">
-                                <div class="img rounded d-flex align-items-end" style="background-image: url('/images/car-4.jpg');">
-		    					</div>
-		    					<div class="text">
-		    						<h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-		    						<div class="d-flex mb-3">
-			    						<span class="cat">Cheverolet</span>
-			    						<p class="price ml-auto">$500 <span>/day</span></p>
-		    						</div>
-		    						<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="#" class="btn btn-secondary py-2 ml-1">Details</a></p>
-		    					</div>
-		    				</div>
-    					</div> *@
+                       
     				</div>
     			</div>
     		</div>
@@ -371,63 +334,7 @@
       </div>
     </section>
 
-   @*  <section class="ftco-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-          	<span class="subheading">Blog</span>
-            <h2>Recent Blog</h2>
-          </div>
-        </div>
-        <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-                        <a href="blog-single.html" class="block-20" style="background-image: url('/images/image_1.jpg');">
-              </a>
-              <div class="text pt-4">
-              	<div class="meta mb-3">
-                  <div><a href="#">Oct. 29, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-                <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                <p><a href="#" class="btn btn-primary">Read more</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-                        <a href="blog-single.html" class="block-20" style="background-image: url('/images/image_2.jpg');">
-              </a>
-              <div class="text pt-4">
-              	<div class="meta mb-3">
-                  <div><a href="#">Oct. 29, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-                <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                <p><a href="#" class="btn btn-primary">Read more</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry">
-                        <a href="blog-single.html" class="block-20" style="background-image: url('/images/image_3.jpg');">
-              </a>
-              <div class="text pt-4">
-              	<div class="meta mb-3">
-                  <div><a href="#">Oct. 29, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-                <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                <p><a href="#" class="btn btn-primary">Read more</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>	 *@
+
 
     <section class="ftco-counter ftco-section img bg-light" id="section-counter">
 			<div class="overlay"></div>
@@ -469,91 +376,86 @@
     	</div>
     </section>	
 
-   @*  <footer class="ftco-footer ftco-bg-dark ftco-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2"><a href="#" class="logo">Car<span>book</span></a></h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Information</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">About</a></li>
-                <li><a href="#" class="py-2 d-block">Services</a></li>
-                <li><a href="#" class="py-2 d-block">Term and Conditions</a></li>
-                <li><a href="#" class="py-2 d-block">Best Price Guarantee</a></li>
-                <li><a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Customer Support</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">FAQ</a></li>
-                <li><a href="#" class="py-2 d-block">Payment Option</a></li>
-                <li><a href="#" class="py-2 d-block">Booking Tips</a></li>
-                <li><a href="#" class="py-2 d-block">How it works</a></li>
-                <li><a href="#" class="py-2 d-block">Contact Us</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
 
-            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-          </div>
-        </div>
-      </div>
-    </footer> *@
-    
   
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+  <style>
+        #searchResults .result-item {
+            cursor: pointer;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 5px;
+        }
 
+            #searchResults .result-item:hover {
+                background-color: #f0f0f0;
+            }
+</style>
+  @section Scripts{
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script src="~/js/jquery.min.js"></script>
-    <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="~/js/popper.min.js"></script>
-    <script src="~/js/bootstrap.min.js"></script>
-    <script src="~/js/jquery.easing.1.3.js"></script>
-    <script src="~/js/jquery.waypoints.min.js"></script>
-    <script src="~/js/jquery.stellar.min.js"></script>
-    <script src="~/js/owl.carousel.min.js"></script>
-    <script src="~/js/jquery.magnific-popup.min.js"></script>
-    <script src="~/js/aos.js"></script>
-    <script src="~/js/jquery.animateNumber.min.js"></script>
-    <script src="~/js/bootstrap-datepicker.js"></script>
-    <script src="~/js/jquery.timepicker.min.js"></script>
-    <script src="~/js/scrollax.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    <script src="~/js/google-map.js"></script>
-    <script src="~/js/main.js"></script>
+        <script>
+            $(document).ready(function () {
+                // Listen for keyup event on the search input
+                $('#searchInput').on('keyup', function () {
+                    // Get the current input value
+                    var searchTerm = $(this).val();
+
+                    // Send AJAX request only if the input has at least one character
+                    if (searchTerm.length > 1) {
+                        $.ajax({
+                            url: '@Url.Action("SearchLocations", "Home")',
+                            type: 'GET',
+                            data: { searchTerm: searchTerm },
+                            success: function (data) {
+                                // Clear previous results
+                                $('#searchResults').empty();
+
+                                // Display new results
+                                if (data.length > 0) {
+                                    $.each(data, function (i, location) {
+                                        var resultItem = $('<div>')
+                                            .addClass('result-item')
+                                            .text(location.name)
+                                            .on('click', function () {
+                                                $('#searchInput').val(location.name);
+                                                $('#searchResults').empty();
+                                            });
+                                        $('#searchResults').append(resultItem);
+                                    });
+                                } else {
+                                    $('#searchResults').append('<p>No Locations found</p>');
+                                }
+                            }
+                        });
+                    } else {
+                        // Clear results if the search box is empty
+                        $('#searchResults').empty();
+                    }
+                });
+            });
+        </script>
+        <script src="~/js/jquery.min.js"></script>
+        <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
+        <script src="~/js/popper.min.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>
+        <script src="~/js/jquery.easing.1.3.js"></script>
+        <script src="~/js/jquery.waypoints.min.js"></script>
+        <script src="~/js/jquery.stellar.min.js"></script>
+        <script src="~/js/owl.carousel.min.js"></script>
+        <script src="~/js/jquery.magnific-popup.min.js"></script>
+        <script src="~/js/aos.js"></script>
+        <script src="~/js/jquery.animateNumber.min.js"></script>
+        <script src="~/js/bootstrap-datepicker.js"></script>
+        <script src="~/js/jquery.timepicker.min.js"></script>
+        <script src="~/js/scrollax.min.js"></script>
+        @*    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> *@
+        <script src="~/js/google-map.js"></script>
+        <script src="~/js/main.js"></script>
+  }
+   
     
   </body>
 </html>
